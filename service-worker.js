@@ -3,7 +3,6 @@
 const CACHE_NAME = 'my-cache-v1';
 const urlsToCache = [
     '/',
-    '/pwa',
     '/pwa/index.html',
     '/pwa/manifest.json',
     '/pwa/icon.png'
