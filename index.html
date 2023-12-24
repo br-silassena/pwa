@@ -22,7 +22,11 @@
                     console.log('Falha ao registrar o Service Worker:', error);
                 });
 
-            if (!window.matchMedia('(display-mode: standalone)').matches) {
+            // Adicionar um ouvinte para o evento 'beforeinstallprompt'
+            window.addEventListener('beforeinstallprompt', (event) => {
+                event.preventDefault();
+                window.deferredPrompt = event;
+
                 const installButton = document.getElementById('installButton');
                 installButton.style.display = 'block';
 
@@ -37,7 +41,7 @@
                         window.deferredPrompt = null;
                     });
                 });
-            }
+            });
         }
     </script>
 </body>
