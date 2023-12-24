@@ -1,10 +1,23 @@
+// service-worker.js
+
+const CACHE_NAME = 'my-cache-v1';
+const urlsToCache = [
+    '/',
+    '/index.html',
+    '/manifest.json',
+    '/icon.png'
+];
+
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open('my-cache').then((cache) => {
-            return cache.addAll([
-                '/',
-                '/index.html'
-            ]);
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll(urlsToCache)
+                .then(() => {
+                    console.log('Recursos adicionados ao cache');
+                })
+                .catch((error) => {
+                    console.error('Falha ao adicionar recursos ao cache:', error);
+                });
         })
     );
 });
